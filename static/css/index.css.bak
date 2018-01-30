@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* 全局 */
+body{margin:0 auto;background:url(img/bg.jpg) no-repeat center top;}
+*{font-family:'微软雅黑';font-size:12px; color: #cccccc;text-align: center;border:0;margin:0;padding:0;}
+ul,li{list-style-type:none;}
+img{border:0;}
+a{text-decoration:none;outline:none;cursor:pointer;}
+a:focus{text-decoration:none;outline:none;cursor:pointer;}
+a:hover{color:rgba(3,119,63,1);text-decoration:none;cursor:pointer;}
+button{background:none;cursor:pointer; outline:0;float:left;color:rgba(3,119,63,1);}
+button:hover{color:rgba(3,119,63,1);text-decoration:none;cursor:pointer;}
+select{background:none;background-color: transparent;}
+input{background:none;border:1px solid #cccccc;}
+textarea{background:none;border:1px solid #cccccc;}
+option{background:none;}
+.clear_l{clear:left;}
+/* /全局 */
+
+/* 框架 */
+#header{margin:10px 0px;padding:0px 5px;height:25px;border-top:1px solid #cccccc;border-bottom:1px solid #cccccc;}
+	#logo{float:left;}
+	#tab_title{float:left;}
+		#tab_title li{float:left;padding:5px;cursor:pointer;}
+		#tab_title li.selected{color:rgba(3,119,63,1);}
+	#header_tool{float:right;}
+#tab_content{}
+	#tab_content .none{display:none;}
+	/*页面列表*/
+	#sj_page{}
+	#rk_page{}
+	#cl_page{}
+	#jq_page{}
+	#ww_page{}
+		/*子页面列表*/
+		#sj_page1{}
+		#rk_page1{}
+		/*页面框架*/
+			.page_top{margin:5px 0px;height:20px;}
+				.page_tool{width:100%;text-align:left;clear:left;padding:5px 0px 0px 0px;}
+				.search{width:100%;text-align:left;clear:left;padding:5px 0px 0px 0px;}
+				.search_item{float:left;text-align:left;margin-left:5px;}
+				.page_time{float:right;width:20%;text-align:right;}
+			.page_content{height:830px;overflow:hidden;width:100%}  /* page_content内部样式尽量写在html*/
+				.page_title{float:left;width:100%;text-align:center;}
+					.page_title p{font-size: 36px;}
+				.w100{width:100%;text-align:left;clear:left;padding:5px 0px 0px 0px;}
+#footer{border-top:1px solid #cccccc;}
+	#footer span{font-size:12px;}
+	#footer a{font-size:12px;}
+/* /框架 */
+
+/* 子页面page_content*/
+
+/* /子页面page_content*/
+
+
+
+

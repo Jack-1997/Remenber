@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<base href="../../index.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+   <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="html/cbafx/main.css" />
+
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/echarts-gl.min.js"></script>
+</head>
+<body>
+    <div id="asjtj_cba">
+        <div class="page_top">
+            <div class="page_tool">
+                <button class="b_nav"><img src="images/i_nav.png"/></button>
+                <input class="search_item" id="cbafx_case_code" type="text" style="height:20px;width:170px;" placeholder="案件编号" value="A3601002100002015070022" />
+                <input class="search_item" id="cbafx_cert_no" type="text" style="height:20px;width:150px;" placeholder="嫌疑人身份证号" />
+                <input class="search_item" id="cbafx_mobile" type="text" style="height:20px;width:100px;" placeholder="涉案手机号" />
+                <input class="search_item" id="cbafx_car_no" type="text" style="height:20px;width:100px;" placeholder="涉案车牌号" />
+                <button class="search_item" id="cbafxBth" style="width:50px; border:1px;">分析</button>
+                <button class="search_item"  style="width:50px; border:1px;" id="cb_clear">清除</button>
+            </div>
+        </div>
+        <div class="page_content">
+            <div class="page_title"><p>案件串并分析</p></div>
+            <div class="page_time"></div>
+            <div style="width:99%;margin:0 auto;clear:left;padding:5px 0px 0px 0px;">
+                <div id="gx" style="width:1500px;height:800px;"></div>
+            </div>
+        </div>
+    </div>
+    <div id="goodcover"></div>
+    <div id="code">
+        <div class="close1"><span>描述</span><a href="javascript:void(0)" id="closebt"><img src="html/cbafx/close.gif"></a></div>
+        <div class="goodtxt">
+        <table id="cbafxTab" style="width:800px;height:380px;" ></table><p id="cbafxTip"></p>
+        <p><a herf='javascript:void(0);' id="cbafxMore">扩展</a><a herf='javascript:void(0);' target="_blank" id="cbafxDetail">详情</a></p>
+        <input type="hidden" id="cbafxCaseCode"><input type="hidden" id="cbafxCodeValue"><input type="hidden" id="removeCodeValue">
+        </div>
+</div>
+<script src="js/asj_gx.js"></script>
+</body>
+</html>
+
+

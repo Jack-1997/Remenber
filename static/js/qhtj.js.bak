@@ -1,0 +1,377 @@
+
+
+
+
+
+function r_qs_fun(){
+	var lastData = [137,90,114,67,87,123,146,171,160,199,66,127,172,66,133,104,196,105,57,79,93,160,59,108];
+	var thisData = [66,145,187,41,101,176,181,178,116,82,82,179,167,101,87,87,89,119,40,79,89,73,189,199];
+	var tbData = [];
+	var hbData = [];
+	var category = [];
+	var maxCategory = 24;        
+	for (var i = 0; i <= maxCategory; i++) {
+	    var this_i= i+1;
+	    category.push(this_i+'时');
+	    tbData[i] = (((thisData[i]-lastData[i])/lastData[i])*100).toFixed(2);
+	    if(i < 1){
+	    	hbData[i]=(((thisData[i]-lastData[maxCategory-1])/lastData[maxCategory-1])*100).toFixed(2);
+	    }else{
+	    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
+	    };
+	}
+	qs_option = {
+	    title: {text: "日趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
+	    toolbox: {
+	        feature: {
+	            dataView: {show: true, readOnly: false},
+	            restore: {show: true},
+	            saveAsImage: {show: true}
+	        }
+	    },
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {type: 'shadow',label: {show: true} }
+	    },
+	    legend: {
+	        data: ['值', '同比增长','环比增长'],
+	        textStyle: {color: '#B4B4B4',fontSize: 12,},
+	        top:'7%',
+	    },
+	    grid:{x:'12%',width:'82%',y:'12%',},
+	    xAxis: {
+	        data: category,
+	        axisLine: {lineStyle: {color: '#B4B4B4'}},
+	        axisTick:{show:true,},
+	        axisLabel:{interval: 0,},
+	    },
+	    yAxis: [{
+	        splitLine: {show: false},
+	        axisLine: {lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}       
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    }],
+	    series: [{
+	        name: '值',
+	        type: 'bar',  
+	        label:{normal:{formatter: '{c}起',show:true,position:'top',textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},
+	        itemStyle: {
+	            normal: {barBorderRadius:5, color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{offset: 0, color: "rgba(113,129,248,.85)"}, {offset: 0,color: "rgba(0,96,194,.85)"}])}
+	        },
+	        data: thisData,
+	    },{
+	        name: '同比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(0,185,96,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"left",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: tbData,
+	    }, {
+	        name: '环比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(113,129,248,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"right",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: hbData,
+	    },
+	   ]
+	};
+	var qs_Chart = echarts.init(document.getElementById('r_qs'));
+	qs_Chart.setOption(qs_option);	
+}
+r_qs_fun();
+
+
+function y_qs_fun(){
+	var lastData = [197,181,6,183,142,35,195,130,152,124,84,159,189,34,105,38,34,13,31,10,127,118,160,185,16,149,1,79,187,184,190];
+	var thisData = [80,117,139,176,41,56,24,186,10,36,48,1,155,166,33,64,110,124,46,148,81,126,146,142,50,117,78,181,41,187,42];
+	var tbData = [];
+	var hbData = [];
+	var category = [];
+	var maxCategory = 31;        
+	for (var i = 0; i <= maxCategory; i++) {
+	    var this_i= i+1;
+	    category.push(this_i+'时');
+	    tbData[i] = (((thisData[i]-lastData[i])/lastData[i])*100).toFixed(2);
+	    if(i < 1){
+	    	hbData[i]=(((thisData[i]-lastData[maxCategory-1])/lastData[maxCategory-1])*100).toFixed(2);
+	    }else{
+	    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
+	    };
+	}
+	qs_option = {
+	    title: {text: "月趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
+	    toolbox: {
+	        feature: {
+	            dataView: {show: true, readOnly: false},
+	            restore: {show: true},
+	            saveAsImage: {show: true}
+	        }
+	    },
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {type: 'shadow',label: {show: true} }
+	    },
+	    legend: {
+	        data: ['值', '同比增长','环比增长'],
+	        textStyle: {color: '#B4B4B4',fontSize: 12,},
+	        top:'7%',
+	    },
+	    grid:{x:'12%',width:'82%',y:'12%',},
+	    xAxis: {
+	        data: category,
+	        axisLine: {lineStyle: {color: '#B4B4B4'}},
+	        axisTick:{show:true,},
+	        axisLabel:{interval: 0,},
+	    },
+	    yAxis: [{
+	        splitLine: {show: false},
+	        axisLine: {lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}       
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    }],
+	    series: [{
+	        name: '值',
+	        type: 'bar',  
+	        label:{normal:{formatter: '{c}起',show:true,position:'top',textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},
+	        itemStyle: {
+	            normal: {barBorderRadius:5, color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{offset: 0, color: "rgba(113,129,248,.85)"}, {offset: 0,color: "rgba(0,96,194,.85)"}])}
+	        },
+	        data: thisData,
+	    },{
+	        name: '同比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(0,185,96,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"left",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: tbData,
+	    }, {
+	        name: '环比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(113,129,248,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"right",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: hbData,
+	    },
+	   ]
+	};
+	var qs_Chart = echarts.init(document.getElementById('y_qs'));
+	qs_Chart.setOption(qs_option);	
+}
+y_qs_fun();
+
+function n_qs_fun(){
+	var lastData = [3301,2724,3127,3013,3135,3815,2845,2897,2397,2610,2785,3626];
+	var thisData = [3091,3085,3181,2600,3537,2761,2506,3348,2618,2841,3787,3310];
+	var tbData = [];
+	var hbData = [];
+	var category = [];
+	var maxCategory = 12;        
+	for (var i = 0; i <= maxCategory; i++) {
+	    var this_i= i+1;
+	    category.push(this_i+'时');
+	    tbData[i] = (((thisData[i]-lastData[i])/lastData[i])*100).toFixed(2);
+	    if(i < 1){
+	    	hbData[i]=(((thisData[i]-lastData[maxCategory-1])/lastData[maxCategory-1])*100).toFixed(2);
+	    }else{
+	    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
+	    };
+	}
+	qs_option = {
+	    title: {text: "年趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
+	    toolbox: {
+	        feature: {
+	            dataView: {show: true, readOnly: false},
+	            restore: {show: true},
+	            saveAsImage: {show: true}
+	        }
+	    },
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {type: 'shadow',label: {show: true} }
+	    },
+	    legend: {
+	        data: ['值', '同比增长','环比增长'],
+	        textStyle: {color: '#B4B4B4',fontSize: 12,},
+	        top:'7%',
+	    },
+	    grid:{x:'12%',width:'82%',y:'12%',},
+	    xAxis: {
+	        data: category,
+	        axisLine: {lineStyle: {color: '#B4B4B4'}},
+	        axisTick:{show:true,},
+	        axisLabel:{interval: 0,},
+	    },
+	    yAxis: [{
+	        splitLine: {show: false},
+	        axisLine: {lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}       
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    }],
+	    series: [{
+	        name: '值',
+	        type: 'bar',  
+	        label:{normal:{formatter: '{c}起',show:true,position:'top',textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},
+	        itemStyle: {
+	            normal: {barBorderRadius:5, color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{offset: 0, color: "rgba(113,129,248,.85)"}, {offset: 0,color: "rgba(0,96,194,.85)"}])}
+	        },
+	        data: thisData,
+	    },{
+	        name: '同比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(0,185,96,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"left",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: tbData,
+	    }, {
+	        name: '环比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(113,129,248,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"right",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: hbData,
+	    },
+	   ]
+	};
+	var qs_Chart = echarts.init(document.getElementById('n_qs'));
+	qs_Chart.setOption(qs_option);	
+}
+n_qs_fun();
+
+function wn_qs_fun(){
+	var lastData = [3301,2724,3127,3013,3135,3815,2845,2897,2397,2610,2785,3626];
+	var thisData = [3091,3085,3181,2600,3537,2761,2506,3348,2618,2841,3787,3310];
+	var tbData = [];
+	var hbData = [];
+	var category = [];
+	var maxCategory = 12;        
+	for (var i = 0; i <= maxCategory; i++) {
+	    var this_i= i+1;
+	    category.push(this_i+'时');
+	    tbData[i] = (((thisData[i]-lastData[i])/lastData[i])*100).toFixed(2);
+	    if(i < 1){
+	    	hbData[i]=(((thisData[i]-lastData[maxCategory-1])/lastData[maxCategory-1])*100).toFixed(2);
+	    }else{
+	    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
+	    };
+	}
+	qs_option = {
+	    title: {text: "年趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
+	    toolbox: {
+	        feature: {
+	            dataView: {show: true, readOnly: false},
+	            restore: {show: true},
+	            saveAsImage: {show: true}
+	        }
+	    },
+	    tooltip: {
+	        trigger: 'axis',
+	        axisPointer: {type: 'shadow',label: {show: true} }
+	    },
+	    legend: {
+	        data: ['值', '同比增长','环比增长'],
+	        textStyle: {color: '#B4B4B4',fontSize: 12,},
+	        top:'7%',
+	    },
+	    grid:{x:'12%',width:'82%',y:'12%',},
+	    xAxis: {
+	        data: category,
+	        axisLine: {lineStyle: {color: '#B4B4B4'}},
+	        axisTick:{show:true,},
+	        axisLabel:{interval: 0,},
+	    },
+	    yAxis: [{
+	        splitLine: {show: false},
+	        axisLine: {lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}       
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    },{
+	        splitLine: {show: false},
+	        axisLine: { lineStyle: {color: '#B4B4B4',}},
+	        axisLabel:{formatter:'{value}',}
+	    }],
+	    series: [{
+	        name: '值',
+	        type: 'bar',  
+	        label:{normal:{formatter: '{c}起',show:true,position:'top',textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},
+	        itemStyle: {
+	            normal: {barBorderRadius:5, color: new echarts.graphic.LinearGradient(0, 0, 0, 1,[{offset: 0, color: "rgba(113,129,248,.85)"}, {offset: 0,color: "rgba(0,96,194,.85)"}])}
+	        },
+	        data: thisData,
+	    },{
+	        name: '同比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(0,185,96,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"left",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: tbData,
+	    }, {
+	        name: '环比增长',
+	        type: 'line',
+	        smooth: true,
+	        showAllSymbol: true,
+	        symbol: 'emptyCircle',
+	        symbolSize: 8,
+	        yAxisIndex: 1,
+	        itemStyle: {normal: {color:"rgba(113,129,248,.85)"},},
+	        /*label:{normal:{formatter: '{c}%',show:true, position:"right",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},*/
+	        data: hbData,
+	    },
+	   ]
+	};
+	var qs_Chart = echarts.init(document.getElementById('wn_qs'));
+	qs_Chart.setOption(qs_option);	
+}
+wn_qs_fun();

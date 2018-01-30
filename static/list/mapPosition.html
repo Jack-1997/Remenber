@@ -1,0 +1,105 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<html>
+	<head>
+	<base href="../index.html">
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="http://10.138.1.78:7001/PGIS_S_TileMap/js/EzMapAPI.js"
+	type="text/javascript" charset="gb2312" language="javascript"></script>
+	</head>
+	<body>
+		<div id="mymap"></div>
+	</body>
+	<script>
+		$(function(){
+			mapLoad();
+			maplocation();
+		});
+	
+		//地图初始化
+		function mapLoad(){
+			// 构造地图类
+			_MapApp = new EzMap(document.getElementById("mymap"));
+			// 显示地图左侧比例尺控制控件
+			_MapApp.showMapControl();
+			// 设置地图对中中心
+			_MapApp.centerAndZoom(new Point(114.93945, 25.8457), 10);
+
+			// 添加鹰眼
+			var uOverview = new OverView();// 构造一个鹰眼对象
+			uOverview.width = 300;// 设置鹰眼视窗的宽度
+			uOverview.height = 300;// 设置鹰眼视窗的高度
+			uOverview.minLevel = 10;// 设置鹰眼视窗中最小显示地图级别
+			uOverview.maxLevel = 12;// 设置鹰眼视窗中最大显示地图级别
+			_MapApp.addOverView(uOverview);// 添加鹰眼对象
+		}
+		
+		//定位
+		function maplocation(){
+			var url = location.search;   
+			var Request = new Object();
+			if(url.indexOf("?") != -1){
+				var str = url.substr(1);
+				strs = str.split("&");
+				for(var i = 0 ; i < strs.length ; i++){
+					Request[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+				}
+			}
+			var ids = Request["ids"];
+			var type = Request["type"];
+			if(type == "jjdb"){
+				$.ajax({
+					url : "api/mapPosition/jjdbMapPosition?ids="+ids,
+					type : "get",
+					success : function(data) {
+						data = JSON.parse(data);
+						for(var i = 0 ; i < data.length ; i++){
+							if(typeof(data[i].x) != "undefined" && typeof(data[i].y) != "undefined" && data[i].x != "0.0" && data[i].y != "0.0"){
+								var xy = data[i].x + "," + data[i].y;
+								var point = new Point(xy);
+								var div = document.createElement("div");
+								div.id = "div" + data[i].jjdbh;
+								div.innerHTML = '<div id="div_'+data[i].jjdbh+'" style="position:absolute;display:none;border:1px solid #9bdf70;background:#f0fbeb;"></div><img src="http://10.138.1.78:7001/PGIS_S_TileMap/images/tack.gif" style="width:30px;j=height:30px">';
+								var uHTMLOverLay = new HTMLElementOverLay(div.id, point,div.innerHTML);
+								let context = '接警编号：</br>'+data[i].jjdbh+'</br>区域：'+data[i].xzqhbh+'</br></br>';
+								uHTMLOverLay.addListener("mouseover", function() {
+									uHTMLOverLay.openInfoWindowHtml(context);
+								});
+								_MapApp.addOverlay(uHTMLOverLay);
+								_MapApp.centerAtLatLng(point);
+							}
+						}
+					}
+				});
+			}else{
+				$.ajax({
+					url : "api/mapPosition/asjMapPosition?ids="+ids,
+					type : "get",
+					success : function(data) {
+						data = JSON.parse(data);
+						for(var i = 0 ; i < data.length ; i++){
+							if(typeof(data[i].x_zb) != "undefined" && typeof(data[i].y_zb) != "undefined" && data[i].x_zb != "0.0" && data[i].y_zb != "0.0"){
+								var xy = data[i].x_zb + "," + data[i].y_zb;
+								var point = new Point(xy);
+								var div = document.createElement("div");
+								div.id = "div" + data[i].transactCaseCode;
+								div.innerHTML = '<div id="div_'+data[i].transactCaseCode+'" style="position:absolute;display:none;border:1px solid #9bdf70;background:#f0fbeb;"></div><img src="http://10.138.1.78:7001/PGIS_S_TileMap/images/tack.gif" style="width:30px;j=height:30px">';
+								var uHTMLOverLay = new HTMLElementOverLay(div.id, point,div.innerHTML);
+								let context = '受案编号：</br>'+data[i].transactCaseCode+'</br>发案地址：'+data[i].reportCaseAddress+'</br></br><a href="javascript:void(0);" onclick=showDetail("'+data[i].transactCaseCode+'");>更多详情</a>';
+								uHTMLOverLay.addListener("mouseover", function() {
+									uHTMLOverLay.openInfoWindowHtml(context);
+								});
+								_MapApp.addOverlay(uHTMLOverLay);
+								_MapApp.centerAtLatLng(point);
+							}
+						}
+					}
+				});
+			}
+			
+		} 
+
+		function showDetail(id){
+			window.open("http://10.138.86.205/html/detail.html?element=aj&id="+id+"&q="+id);
+		}
+	</script>
+</html>

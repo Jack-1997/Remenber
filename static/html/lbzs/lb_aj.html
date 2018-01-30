@@ -1,0 +1,43 @@
+
+<div class="page_top">
+				<div class="page_tool">
+					<button class="b_nav"><img src="images/i_nav.png"/></button>		
+					<input id="lb_ajam" class="search_item" type="text" style="height:20px;width:400px;" placeholder="一案一码 以逗号隔开" />
+					<input id="lb_ajbh" class="search_item" type="text" style="height:20px;width:400px;" placeholder="受案编号 以逗号隔开" />
+					<button class="search_item" id="search_aj" style="width:50px; border:1px;">查询</button>
+					<button class="search_item"  style="width:50px; border:1px;" id="aj_clear">清除</button>
+					<button class="search_item"  style="width:50px; border:1px;display:none;" id="thatposition">批量定位</button>	
+									
+				</div>								
+			</div>			
+			<div class="page_content">
+				<div class="page_title"><p>案件列表展示</p></div>			
+				<div class="page_time"></div>			
+			  <div class="w100">
+					<div id="container_aj">
+						
+						<table data-toggle="table" id="table_aj" class="table-hover table "  data-show-refresh="true">
+						            
+						</table>
+						
+					</div>
+					<!-- 分页功能 -->
+					<p class="showrem_aj"></p>
+					<span class="showpagenum_aj"></span>
+					<div id="page_aj">
+
+						<span data-page="1">首页</span>
+						<span data-page="prev">上一页</span> 
+						<span data-page="1">1</span>
+						<span data-page="2">2</span>
+						<span data-page="3">3</span>
+						<span data-page="next">下一页</span>
+						<span data-page="last">尾页</span>
+						跳转至<input id="getpage" type="number">页
+						<a>GO</a>
+					
+					</div>
+					<!-- <span class="showpagenum_aj"></span> -->
+			  </div>
+										  			
+			</div>

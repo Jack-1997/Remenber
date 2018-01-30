@@ -1,0 +1,42 @@
+
+<div class="page_top">
+				<div class="page_tool">
+					<button class="b_nav"><img src="images/i_nav.png"/></button>		
+					<input id="lb_jqam" class="search_item" type="text" style="height:20px;width:400px;" placeholder="一案一码 以逗号隔开" />
+					<input id="lb_jqbh" class="search_item" type="text" style="height:20px;width:400px;" placeholder="接警单编号 以逗号隔开" />
+					<button class="search_item" id="search_jq" style="width:50px; border:1px;">查询</button>
+					<button class="search_item"  style="width:50px; border:1px;" id="jq_clear">清除</button>	
+					<button class="search_item" id="thisposition"  style="width:50px; border:1px;display:none;">批量定位</button>				
+				</div>								
+			</div>			
+			<div class="page_content">
+				<div class="page_title"><p>警情列表展示</p></div>			
+				<div class="page_time"></div>			
+			  <div class="w100">
+					<div id="container_jq">
+						
+						<table data-toggle="table" id="table" class="table-hover table "  data-show-refresh="true">
+						            
+						</table>
+						
+					</div>
+					<!-- 分页功能 -->
+					<p class="showrem_jq"></p>
+					<span class="showpagenum_jq"></span>
+					<div id="page_jq">
+
+						<span data-page="1">首页</span>
+						<span data-page="prev">上一页</span> 
+						<span data-page="1">1</span>
+						<span data-page="2">2</span>
+						<span data-page="3">3</span>
+						<span data-page="next">下一页</span>
+						<span data-page="last">尾页</span>
+						跳转至<input id="getpage_jq" type="number">页
+						<a>GO</a>
+					
+					</div>
+					<!-- <span class="showpagenum_jq"></span> -->
+			  </div>
+										  			
+			</div>

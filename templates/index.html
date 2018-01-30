@@ -1,0 +1,84 @@
+<!--  -->
+
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>警情案事件分析系统</title>
+	<link href="css/index.css" rel="stylesheet" type="text/css" />
+	<link href="css/table.css" rel="stylesheet" type="text/css" />
+
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/echarts-gl.min.js"></script>	
+	
+    <!-- 引入 echarts.js -->
+	<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=7rcnYlzGxUGfVdxaVQm4jGeG"></script> -->
+	<script type="text/javascript" src="js/bmap.js"></script>
+
+	<style type="text/css">
+		#tab_title li a:hover{background-color:#9FB6CD;}
+		.menu-list {position:absolute;width:100px;z-index:2;border-bottom:2px solid #ebe5e2;border-right:1px solid #ebe5e2;background:#0e243b;border-right:1px solid #ebe5e2;}
+		#tab_title .menu-list li a{display:block;font-size:12px;font-weight:200;width:90px;color:#fff;text-align:center;line-height:16px;}
+		#tab_title .menu-list li a:hover{background-color:#9FB6CD;display:block;}
+	</style>
+
+</head>
+<body>
+
+<div id="header">
+	<div id="logo"></div>
+	<div id="tab_title">
+		<ul>
+			<!-- <li><a href="#">总体态势</a></li> -->
+			<li><a href="#">趋势分析</a>
+				<ul class="menu-list">
+					<li><a href="javascript:void(0);" id="qsfx_jq">警情趋势分析</a></li>
+					<li><a href="javascript:void(0);" id="qsfx_aj">案件趋势分析</a></li>
+					<li><a href="javascript:void(0);" id="qsfx_xyr">嫌疑人趋势分析</a></li>
+				</ul>
+			</li>
+			<li><a href="#">区域分析</a>
+				<ul class="menu-list">
+					<li><a href="javascript:void(0);" id="qyfx_jq">警情区域分析</a></li>
+					<li><a href="javascript:void(0);" id="qyfx_aj">案件区域分析</a></li>
+					<li><a href="javascript:void(0);" id="qyfx_xyr">嫌疑人区域分析</a></li>
+				</ul>
+			</li>
+			<li><a href="#">类别分析</a>
+				<ul class="menu-list">
+					<li><a href="javascript:void(0);" id="lbfx_jq">警情类别分析</a></li>
+					<li><a href="javascript:void(0);" id="lbfx_aj">案件类别分析</a></li>
+					<li><a href="javascript:void(0);" id="lbfx_xyr">嫌疑人类别分析</a></li>
+				</ul>
+			</li>
+			<li id="cban"><a href="#">串并分析</a></li>
+			<li><a href="#">列表展示</a>
+				<ul class="menu-list">
+					<li><a href="javascript:void(0);" id="lbzs_jq">警情列表展示</a></li>
+					<li><a href="javascript:void(0);" id="lbzs_aj">案件列表展示</a></li>
+					<li><a href="javascript:void(0);" id="lbzs_xyr">嫌疑人列表展示</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<div id="tab_content"><!--页面-->
+	<iframe src="list/qs_jq.html" id="linkhere" style="width:100%;height:1340px;padding:0;margin:0;"></iframe>
+</div>
+
+<div id="footer" style="text-align:center;background:rgba(5, 21, 34, 1);">
+
+	<span>&copy;201710</span><a href="#">赣州市公安局</a><span>版权所有   技术支持：</span><a href="#">广州金越软件技术有限公司</a>
+</div>
+</body>
+
+<script type="text/javascript" src="dateTime/jquery.date_input.pack.js"></script>
+<script src="js/index.js"></script>
+
+
+<!-- <script src="js/asjmap.js"></script>
+<script src="js/asj_gx.js"></script> -->
+
+</html>
