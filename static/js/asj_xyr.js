@@ -85,9 +85,12 @@
 
 					        data.forEach(function(item,index){
 					        	//console.log(item.deptName);
-					        	
+					        	var thisstr = item.deptName;
+					        	if(item.deptName.length>16){
+					        		thisstr = item.deptName.slice(0,16) + "...";
+					        	}
 					        	templatecj += `
-					        		<option value="${item.deptId}" data-id="${item.id}">${item.deptName}</option>
+					        		<option title="${item.deptName}" value="${item.deptId}" data-id="${item.id}">${thisstr}</option>
 					        	`;
 					        	
 					        });
@@ -226,6 +229,9 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        selected: {
+							    '环比增长': false
+							},
 					    },
 					    grid:{x:'5%',width:'90%',y:'15%'},
 					    xAxis: {
@@ -418,6 +424,9 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        selected: {
+							    '环比增长': false
+							},
 					    },
 					    grid:{x:'5%',width:'90%',y:'15%'},
 					    xAxis: {
@@ -512,6 +521,9 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        selected: {
+							    '环比增长': false
+							},
 					    },
 					    grid:{x:'10%',width:'80%',y:'15%'},
 					    xAxis: {
@@ -619,6 +631,9 @@
 							        data: ['本期','环比增长'],
 							        textStyle: {color: '#B4B4B4',fontSize: 12,},
 							        top:'7%',
+							  //       selected: {
+									//     '环比增长': false
+									// },
 							    },
 							    grid:{x:'10%',width:'80%',y:'15%'},
 							    xAxis: {

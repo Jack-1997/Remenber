@@ -1,4 +1,5 @@
-// $("#asjtj_cba").load("html/cbafx/cbafx.html",function(){
+
+
     function addClickEventsToEcharts(Chart) {
         Chart.on("click", function (param){
             var lx = param;
@@ -25,11 +26,11 @@
                         removeCodeValue += option.series[0].data[i].name+",";
                     }
                     if(option.series[0].data[i].category=="人") {
-                        xyr = option.series[0].data[i].name;
+                        xyr += option.series[0].data[i].name+",<br>";
                     }else if(option.series[0].data[i].category=="号") {
-                        dhhm = option.series[0].data[i].name;
+                        dhhm += option.series[0].data[i].name+",<br>";
                     }else if(option.series[0].data[i].category=="车") {
-                        cph = option.series[0].data[i].name;
+                        cph += option.series[0].data[i].name+",<br>";
                     }
                 }
             }
@@ -70,12 +71,12 @@
                     }
                 });
             }
-
+            $('#cbafxDetail').show();
             if(category=='人') {
                 element = "ry";
             }
             if(category=='号') {
-
+                $('#cbafxDetail').hide();
             }
             if(category=='车') {
                 element = "wp";
@@ -124,25 +125,25 @@
                 data = JSON.parse(data);
                 var listData = data.asjData;
                 var listLinkData = data.asjLinkData;
-                console.info(data);
+                
                 if(!data){
                    return;
                 }else{
                     if(data.asjData.length > 0){
                          for(var i in listData) {
-							    var symbolObj = '';
-								if(listData[i].category=='案') {
-									symbolObj = 'image://html/cbafx/case.jpg';
-								}
-								if(listData[i].category=='人') {
-									symbolObj = 'image://html/cbafx/user.jpg';
-								}
-								if(listData[i].category=='号') {
-									symbolObj = 'image://html/cbafx/phone.jpg';
-								}
-								if(listData[i].category=='车') {
-									symbolObj = 'image://html/cbafx/timg.jpg';
-								}
+                                var symbolObj = '';
+                                if(listData[i].category=='案') {
+                                    symbolObj = 'image://html/cbafx/case.jpg';
+                                }
+                                if(listData[i].category=='人') {
+                                    symbolObj = 'image://html/cbafx/user.jpg';
+                                }
+                                if(listData[i].category=='号') {
+                                    symbolObj = 'image://html/cbafx/phone.jpg';
+                                }
+                                if(listData[i].category=='车') {
+                                    symbolObj = 'image://html/cbafx/timg.jpg';
+                                }
                                 asjData.push({name:listData[i].name,category:listData[i].category,symbol:symbolObj,symbolSize:[50,50],value:listData[i].case_name});
                         }
                         for(var i in listLinkData) {
@@ -154,7 +155,7 @@
                 }
             }
         });
-        console.log(asjData,asjLinkData);
+        
         option = {
             title: {text: ''},
             tooltip: {formatter:'{b}'},
@@ -295,19 +296,19 @@
                         var asjData = [];
                         var asjLinkData = [];
                         for(var i in listData) {
-							var symbolObj = '';
-							if(listData[i].category=='案') {
-								symbolObj = 'image://html/cbafx/case.jpg';
-							}
-							if(listData[i].category=='人') {
-								symbolObj = 'image://html/cbafx/user.jpg';
-							}
-							if(listData[i].category=='号') {
-								symbolObj = 'image://html/cbafx/phone.jpg';
-							}
-							if(listData[i].category=='车') {
-								symbolObj = 'image://html/cbafx/timg.jpg';
-							}
+                            var symbolObj = '';
+                            if(listData[i].category=='案') {
+                                symbolObj = 'image://html/cbafx/case.jpg';
+                            }
+                            if(listData[i].category=='人') {
+                                symbolObj = 'image://html/cbafx/user.jpg';
+                            }
+                            if(listData[i].category=='号') {
+                                symbolObj = 'image://html/cbafx/phone.jpg';
+                            }
+                            if(listData[i].category=='车') {
+                                symbolObj = 'image://html/cbafx/timg.jpg';
+                            }
                             asjData.push({name:listData[i].name,category:listData[i].category,symbol:symbolObj,symbolSize:[50,50],value:listData[i].case_name});
                         }
                         for(var i in listLinkData) {
@@ -346,19 +347,19 @@
                         var Chart = echarts.init(document.getElementById('gx'));
                         var option = Chart.getOption();
                         for(var i in asjData) {
-							var symbolObj = '';
-							if(asjData[i].category=='案') {
-								symbolObj = 'image://html/cbafx/case.jpg';
-							}
-							if(asjData[i].category=='人') {
-								symbolObj = 'image://html/cbafx/user.jpg';
-							}
-							if(asjData[i].category=='号') {
-								symbolObj = 'image://html/cbafx/phone.jpg';
-							}
-							if(asjData[i].category=='车') {
-								symbolObj = 'image://html/cbafx/timg.jpg';
-							}
+                            var symbolObj = '';
+                            if(asjData[i].category=='案') {
+                                symbolObj = 'image://html/cbafx/case.jpg';
+                            }
+                            if(asjData[i].category=='人') {
+                                symbolObj = 'image://html/cbafx/user.jpg';
+                            }
+                            if(asjData[i].category=='号') {
+                                symbolObj = 'image://html/cbafx/phone.jpg';
+                            }
+                            if(asjData[i].category=='车') {
+                                symbolObj = 'image://html/cbafx/timg.jpg';
+                            }
                             option.series[0].data.push({name:asjData[i].name,category:asjData[i].category,symbol:symbolObj,symbolSize:[50,50],value:asjData[i].value});
                         }
                         for(var i in asjLinkData) {
@@ -374,11 +375,6 @@
         });
     });
 
-    //点击清除
-    $("#cb_clear").click(function(){
-        $("#cbafx_case_code").val("");
-        $("#cbafx_cert_no").val("");
-        $("#cbafx_car_no").val("");
-    })
-// });
+
+
 

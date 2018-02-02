@@ -209,7 +209,15 @@ $("#list_page3").load("html/lbzs/lb_xyr.html",function(){
 			                        return f;  
 			                    } 
 			                  }
-			            ]
+			            ],
+			            //自定义提示语
+			            formatNoMatches: function(){
+							        return "没有相关的匹配结果";
+						},
+
+						formatLoadingMessage: function(){
+							        return "请稍等，正在加载中。。。";
+						},
 			});
 			
 		});

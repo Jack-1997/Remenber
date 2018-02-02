@@ -148,7 +148,7 @@
 					        // console.log(JSON.parse(data));
 					       var data = JSON.parse(data);
 					       var mapdata = data.shift();
-					       console.log(data);
+					      // console.log(data);
 					       // if(data.length==0){
 
 						       	var thisda =[
@@ -171,17 +171,38 @@
 											{name:'崇义县',value:0},
 											{name:'大余县',value:0},
 								];
-								// data = thisda;
-					       // }
-					       // for(var i=0; i<thisda.length; i++){
-					       // 		console.log(thisda[i],data[i]);
-					       // 		if(data[i] == "undefined"){console.log(666)
-					       // 			//data.push(thisda[i]);
-					       // 			 //console.log(data)
-					       // 		}
-					       // }
+							
 					       if(data.length ==0 ){
-					       		data = thisda
+					       		data = thisda;
+					       }else if(data.length<18){
+					       		//先找出少了哪一个
+					       		var a = new Array();
+					       		var b = new Array();
+					       		var c = new Array();
+					       		for(var i=0;i<thisda.length; i++){
+					       			a.push(thisda[i].name);
+					       		}
+					       		for(var i=0;i<data.length; i++){
+					       			b.push(data[i].name);
+					       		}
+					       		console.log(a,b,c);
+					       		for(var i in a){
+									c[a[i]]=a[i];
+								}
+								for(var i in b){
+									if(c[b[i]]){
+										delete c[b[i]];
+									}else{
+										c[b[i]]=b[i];
+									}
+								}
+								for(var i in c){
+									console.log(c[i]);
+									data.push({name:c[i],value:0});
+								}
+								console.log(data);
+
+					       		
 					       }
 					       //console.log(data)
 					      gzqhmap_qy_fun(data);
@@ -211,7 +232,7 @@
 								success:function(data){
 									//console.log(JSON.parse(data));
 									//data = JSON.parse(data);
-									if(data.length == 0){
+									if(data.length == 2 && jjgrade!=1){
 										return
 									}else{
 										data = JSON.parse(data);
@@ -238,7 +259,7 @@
 								success:function(data){
 									//console.log(JSON.parse(data));
 											
-									if(data.length == 0){
+									if(data.length == 2 && cjgrade!=1){
 										return
 									}else{
 											data = JSON.parse(data);
@@ -258,7 +279,7 @@
 
 				//赣州地图
 				function gzqhmap_qy_fun(mapdata) {
-					console.log(mapdata);
+					//console.log(mapdata);
 					// var thisda =[
 					// 			{name:'章贡区',value:0},
 					// 			{name:'石城县',value:0},
@@ -365,7 +386,11 @@
 							axisTick: {show:false}, axisLabel: {show:true,textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}},splitLine: {show:false},axisLine: {show:true,lineStyle:{color:"rgba(204,204,204,.85)"}},		
 				 	 }],
 						series: [{
-							type: 'bar',xAxisIndex: 0,yAxisIndex: 0,barWidth:'45%',itemStyle:{normal:{color:new echarts.graphic.LinearGradient(0, 0, 1, 0, [{offset: 0,color: "rgba(0,102,255,1)"}, {offset: 1,color: "rgba(80,97,228,0.5)"}])}},
+							type: 'bar',
+							xAxisIndex: 0,
+							yAxisIndex: 0,
+							barWidth:'45%',
+							itemStyle:{normal:{color:new echarts.graphic.LinearGradient(0, 0, 1, 0, [{offset: 0,color: "rgba(0,102,255,1)"}, {offset: 1,color: "rgba(80,97,228,0.5)"}])}},
 							label:{normal:{formatter: '{c}',show:true, position:"top",textStyle:{color: 'rgba(155,166,198,1)',fontSize: 12,fontWeight: "bold"}}},
 							data:database,
 						},]
@@ -391,6 +416,7 @@
 					});	
 
 					//点击按钮返回受案首层
+					$("#jjdwreturn_aj").unbind();
 					$("#jjdwreturn_aj").on("click",function(){
 						console.log("返回首层")
 						//返回首层
@@ -457,6 +483,7 @@
 					});	
 
 					//点击按钮返回办案首层
+					$("#cjdwreturn_aj").unbind();
 					$("#cjdwreturn_aj").on("click",function(){
 						console.log("返回首层")
 						//返回首层

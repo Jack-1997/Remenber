@@ -9,7 +9,7 @@ $(document).ready(function(e) {
                 $(this).children("ul").slideUp(200);
             }
         )
-    });
+});
 
 	$(function() {
 		$("#qsfx_jq").click(function() {
@@ -69,7 +69,7 @@ $(document).ready(function(e) {
 
 		// 		$("#linkhere")[0].style.backgroundColor = "rgba(5, 21, 34, 1)";
 		// 		$("#linkhere")[0].style.height = "1583px";
-  //               console.log($("#linkhere")[0]);
+        //               console.log($("#linkhere")[0]);
 		// 	}
 		// 	else if(index == 1){
 

@@ -15,7 +15,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 				    url:'api/dimDicGb/getByDmbh?dmbh=3607',
 
 				    success:function(data){
-				       // console.log(JSON.parse(data));
+				       // 
 				        var data = JSON.parse(data);
 				         var template = `<option value="">区域</option>`;
 				        data.forEach(function(item,index){
@@ -60,15 +60,15 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 			    scriptCharset:'utf-8',
 
 			    success:function(data){
-			    	//console.log(data);
-			       //console.log(JSON.parse(data));
+			    	//
+			       //
 			        var data = JSON.parse(data);
 			        var templatejj =`<option value="">接警单位<option>`;
 			        var templatecj =`<option value="">出警单位<option>`;
 			        var templatefk =`<option value="">反馈单位<option>`;
 			    
 			        data.forEach(function(item,index){
-			        	//console.log(item.deptName);
+			        	//
 			        	var thisstr = item.deptName;
 			        	if(item.deptName.length>10){
 			        		thisstr = item.deptName.slice(0,11) + "...";
@@ -86,7 +86,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 			        	`;
 			   
 			        });
-			        console.log(quyujjstation);
+			       
 			        quyujjstation.html(templatejj);
 			        quyujjstation.find('option')[1].remove();
 			        quyucjstation.html(templatecj);
@@ -201,7 +201,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 		}
 		
 		 dateend = endyear + endmonth + enddays;
-			 console.log(startdate,enddate);
+			
 			 dataArr = [datestart,dateend,jqqybh,jqdwbh,cjdwbh,fkdwbh];
 			 //重新执行函数
 			 jdlx(dataArr);
@@ -236,6 +236,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					}
 					 data.push({name:i,value:value});
 				}
+				//console.log(data)
 				return data;
 		}
 		function getval(obj,arr){
@@ -262,9 +263,9 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 				},
 				// alarmTrend/getSingleAlarm?startDate=20180111&endDate=20180112
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
-
+					console.log(data);
 
 					//警单数量
 					var obj = data.glsl;
@@ -274,12 +275,14 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					
 					var yxtj;
 					var wxtj;
+					console.log(jdsl);
 					//警单类型取前十个
 					var jdtype = data.cdlx.slice(0,10);
-					if(obj==null){
-						jdtype = [];
+					if(data.yxwxtj==null){
+						//jdtype = [];
 						yxtj =0;
 						wxtj =0;
+						console.log("空")
 					}else{
 						//有效统计
 					yxtj = data.yxwxtj.yxtj;
@@ -287,7 +290,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					//无效统计
 					wxtj = data.yxwxtj.wxtj;
 					}
-					//console.log(jdsl,jdtype);
+					console.log(yxtj,wxtj,jdtype,jdsl);
 					fl1_fun(yxtj,wxtj,jdtype,jdsl);
 				}
 			});
@@ -415,12 +418,12 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					cjdwbh:cjdwbh
 				},
 				success:function(data){
-					//console.log(JSON.parse(data));
+					//
 					var city = JSON.parse(data).city;
 					var village = JSON.parse(data).village;
 					var cityArr = new Array();
 					var villageArr = new Array();
-					console.log(city,village);
+					//
 					getval(city,cityArr);
 					getval(village,villageArr);
 					//console.log(cityArr,villageArr);
@@ -510,12 +513,12 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					cjdwbh:cjdwbh
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var city = JSON.parse(data).city;
 					var village = JSON.parse(data).village;
 					var cityArr = new Array();
 					var villageArr = new Array();
-					console.log(city,village);
+					
 					getval(city,cityArr);
 					getval(village,villageArr);
 					//console.log(cityArr,villageArr);
@@ -604,12 +607,12 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 					cjdwbh:cjdwbh
 				},
 				success:function(data){
-					//console.log(JSON.parse(data));
+					//
 					var city = JSON.parse(data).city;
 					var village = JSON.parse(data).village;
 					var cityArr = new Array();
 					var villageArr = new Array();
-					//console.log(city,village);
+					//
 					getval(city,cityArr);
 					getval(village,villageArr);
 					//console.log(cityArr,villageArr);
@@ -789,7 +792,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 						yxjqzs += data[i].YXJQSL;
 						wxjqzs += (data[i].JQSL-data[i].YXJQSL);
 					}
-					console.log(yxjqzs,wxjqzs);
+					
 					jqlb(description,wxsl,yxsl,yxjqzs,wxjqzs);
 				}
 			});
@@ -1110,7 +1113,7 @@ $("#asjlxjq_page1").load("html/lxfx/jqlx.html",function(){
 						yxjqzs += data[i].YXJQSL;
 						wxjqzs += (data[i].JQSL-data[i].YXJQSL);
 					}
-					console.log(yxjqzs,wxjqzs);
+					
 					
 					jtsg(description,wxsl,yxsl,yxjqzs,wxjqzs);
 				}	

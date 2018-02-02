@@ -17,7 +17,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 				    url:'api/dimDicGb/getByDmbh?dmbh=3607',
 
 				    success:function(data){
-				       // console.log(JSON.parse(data));
+				       // 
 				        var data = JSON.parse(data);
 				        var template = `<option value="" >区域</option>`;
 				        data.forEach(function(item,index){
@@ -63,7 +63,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 
 			    success:function(data){
 			    	//console.log(data);
-			       //console.log(JSON.parse(data));
+			       //
 			        var data = JSON.parse(data);
 			        var templatejj =`<option value="">受案单位<option>`;
 			        var templatecj =`<option value="">办案单位<option>`;
@@ -118,7 +118,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 		}
 		var startdatehour= startday.split(" ");
 		var startdays = startdatehour[0];
-		console.log()
+		
 		//var starthours = startdatehour[1].slice(0,2);//
 		if(startdays<10){
 			startdays = "0" + startdays;//
@@ -155,7 +155,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 
 		//点击统计
 		$("#lxaj_tj").click(function(){
-			console.log(666)
+			
 			caseDutyArea = $("#lx_quyu").val();
 			fillinOrganization = $("#ajlx_jjstation").val();
 			handleOrgan = $("#ajlx_cjstation").val();
@@ -176,7 +176,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 			}
 			var startdatehour= startday.split(" ");
 			var startdays = startdatehour[0];
-			console.log()
+			
 			//var starthours = startdatehour[1].slice(0,2);//
 			if(startdays<10){
 				startdays = "0" + startdays;//
@@ -385,7 +385,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 						caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -401,7 +401,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 						yxjqzs += data[i].YXAJSL;
 						wxjqzs += (data[i].AJSL-data[i].YXAJSL);
 					}
-					console.log(yxjqzs,wxjqzs);
+					
 					ajly(description,wxsl,yxsl,yxjqzs,wxjqzs)
 				}
 			});
@@ -431,7 +431,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 						caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -476,7 +476,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 						caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -523,7 +523,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -569,7 +569,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -615,7 +615,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -660,7 +660,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -707,7 +707,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -752,7 +752,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -799,7 +799,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -844,7 +844,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -890,7 +890,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -937,7 +937,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -982,7 +982,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1028,7 +1028,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1074,7 +1074,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1121,7 +1121,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1167,7 +1167,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1213,7 +1213,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1259,7 +1259,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1305,7 +1305,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1351,7 +1351,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1396,7 +1396,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1443,7 +1443,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1489,7 +1489,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1535,7 +1535,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];
@@ -1580,7 +1580,7 @@ $("#asjlx_page1").load("html/lxfx/ajlx.html",function(){
 							caseLabel:caseLabel,
 				},
 				success:function(data){
-					console.log(JSON.parse(data));
+					
 					var data = JSON.parse(data);
 
 					var description = [];

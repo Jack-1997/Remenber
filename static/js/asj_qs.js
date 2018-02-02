@@ -2,7 +2,7 @@
 	//警情趋势分析
 
 		
-	$("#asjqs_page1").load("html/qsfx/jq.html",function(){console.log(777)
+	$("#asjqs_page1").load("html/qsfx/jq.html",function(){
 		function jq(){
 				$(document).ready(function(){
 			  		$(".b_search").click(function(){//搜索栏隐藏
@@ -85,8 +85,8 @@
 					        data.forEach(function(item,index){
 					        	//console.log(item.deptName);
 					        	var thisstr = item.deptName;
-					        	if(item.deptName.length>10){
-					        		thisstr = item.deptName.slice(0,11) + "...";
+					        	if(item.deptName.length>16){
+					        		thisstr = item.deptName.slice(0,16) + "...";
 					        	}
 					        	//item.deptName;
 					        	templatejj += `
@@ -184,7 +184,7 @@
 				$(".thisdate").text(dateString);
 
 			
-					console.log($("#jxqy").val());
+					//console.log($("#jxqy").val());
 				$("#calc").click(function(){
 				
 					//获取当前年份
@@ -238,7 +238,7 @@
 					// var thisData = [66,145,187,41,101,176,181,178,116,82,82,179,167,101,87,87,89,119,40,79,89,73,189,199];
 					var tbData = [];
 					var hbData = [];
-					console.log(thisData,lastData);
+					//console.log(thisData,lastData);
 					var category = [];
 					var maxCategory = 24;        
 					for (var i = 0; i <maxCategory; i++) {
@@ -251,7 +251,7 @@
 					    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
 					    };
 					}
-					console.log(tbData,hbData);
+					//console.log(tbData,hbData);
 					
 					option = {
 					    title: {text: "一日趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
@@ -264,6 +264,12 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        //selectedMode:"single",
+					        selected: {
+							   
+							   
+							    '环比增长': false
+							}
 					    },
 					    grid:{x:'5%',width:'90%',y:'15%'},
 					    xAxis: {
@@ -321,6 +327,10 @@
 					        yAxisIndex: 1,
 					        itemStyle: {normal: {color:"rgba(113,129,248,.85)"},},
 					        data: hbData,
+					        // show:false,
+					        // splitLine:{  
+				         //  　　    show:false  
+				         //  　},
 					    },
 					   ]
 					};
@@ -347,7 +357,7 @@
 					    	hbData[i]=(((thisData[i]-thisData[i-1])/thisData[i-1])*100).toFixed(2);
 					    };
 					}
-					console.log(tbData,hbData);
+					//console.log(tbData,hbData);
 					option = {
 					    title: {text: "一月趋势分析",left: 'center',textStyle:{color:"rgba(204,204,204,.85)"}},
 					    
@@ -359,6 +369,11 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        selected: {
+							   
+							   
+							    '环比增长': false
+							}
 					    },
 					    grid:{x:'5%',width:'90%',y:'15%'},
 					    xAxis: {
@@ -452,6 +467,9 @@
 					        data: ['上一期','本期', '同比增长','环比增长'],
 					        textStyle: {color: '#B4B4B4',fontSize: 12,},
 					        top:'7%',
+					        selected: {
+							    '环比增长': false
+							},
 					    },
 					    grid:{x:'10%',width:'80%',y:'15%'},
 					    xAxis: {
@@ -559,6 +577,9 @@
 							        data: ['本期','环比增长'],
 							        textStyle: {color: '#B4B4B4',fontSize: 12,},
 							        top:'7%',
+							  //       selected: {
+									//     '环比增长': false
+									// }
 							    },
 							    grid:{x:'10%',width:'80%',y:'15%'},
 							    xAxis: {
@@ -618,24 +639,31 @@
 					    scriptCharset:'utf-8',
 					    success:function(data){
 					    	tenyearsdata = JSON.parse(data).reverse();
-					    	//console.log(tenyearsdata);
-					    	var thisyear = tenyearsdata[10].year;
-					    	
 					    	var thisData = new Array ;
 					    	var lastData = new Array ;
+					    	var thisyear;
+					    	if(tenyearsdata.length == 0){
+					    		thisyear = data.date.slice(0,4);
+					    		sn_qs_fun(thisData,lastData,thisyear);
+					    	}else{
 
-					    	for(var i=0; i<tenyearsdata.length-1; i++){
-								lastData.push(tenyearsdata[i].sum);
-							}
+							    	thisyear = tenyearsdata[10].year;
+							    	
+							    	
+
+							    	for(var i=0; i<tenyearsdata.length-1; i++){
+										lastData.push(tenyearsdata[i].sum);
+									}
 
 
-							for(var i=1; i<tenyearsdata.length; i++){
-								thisData.push(tenyearsdata[i].sum)
-							}
-							//console.log(thisData,lastData);
-					    	sn_qs_fun(thisData,lastData,thisyear);
+									for(var i=1; i<tenyearsdata.length; i++){
+										thisData.push(tenyearsdata[i].sum)
+									}
+									
+							    	sn_qs_fun(thisData,lastData,thisyear);
+					    	}
 					    	
-					    	//console.log(selectdate);	
+					    	
 					    }
 					})
 
@@ -643,17 +671,11 @@
 					$.ajax({
 							type:'GET',
 							url:'api/alarmTrend/getByHour',
-							
-						    // data:{
-						    // 	date:"20180101",
-						    // 	field:"FKSl"
-						    // },
 						    data:datahours,
 						    scriptCharset:'utf-8',
 						    success:function(data){
 						    	var data = JSON.parse(data)
-						    	//console.log(data[0]);
-						    	//console.log(data[1]);
+						    	
 						    	var thisData = new Array ;
 						    	var lastData = new Array ;
 						    	//console.log(data[0].result.length);

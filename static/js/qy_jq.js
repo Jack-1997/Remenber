@@ -144,7 +144,9 @@
 				// console.log(leftinitdata);
 				//数据请求
 				function getleftdata(field,datestart,dateend){
-					//console.log("成功！")
+					//console.log("成功！")4
+
+					
 					//左侧
 					$.ajax({
 					    type:'GET',
@@ -158,8 +160,9 @@
 					    success:function(data){
 					        //console.log(JSON.parse(data));
 					       var data = JSON.parse(data);
+					      
 					       var mapdata = data.shift();
-					       //console.log(data)
+					      // console.log(data)
 					       	var thisda =[
 											{name:'章贡区',value:0},
 											{name:'石城县',value:0},
@@ -179,13 +182,42 @@
 											{name:'上犹县',value:0},
 											{name:'崇义县',value:0},
 											{name:'大余县',value:0},
-								];
+							];
 
-							if(data.length ==0 ){
-					       		data = thisda
+							 if(data.length ==0 ){
+					       		data = thisda;
+					       }else if(data.length<18){
+					       		//先找出少了哪一个
+					       		var a = new Array();
+					       		var b = new Array();
+					       		var c = new Array();
+					       		for(var i=0;i<thisda.length; i++){
+					       			a.push(thisda[i].name);
+					       		}
+					       		for(var i=0;i<data.length; i++){
+					       			b.push(data[i].name);
+					       		}
+					       		console.log(a,b,c);
+					       		for(var i in a){
+									c[a[i]]=a[i];
+								}
+								for(var i in b){
+									if(c[b[i]]){
+										delete c[b[i]];
+									}else{
+										c[b[i]]=b[i];
+									}
+								}
+								for(var i in c){
+									console.log(c[i]);
+									data.push({name:c[i],value:0});
+								}
+								console.log(data);
+
+					       		
 					       }
-					      gzqhmap_qy_fun(data);
-					      qh_qy_fun(data);
+					      	gzqhmap_qy_fun(data);
+					      	qh_qy_fun(data);
 					    }
 
 					});
@@ -213,8 +245,8 @@
 								success:function(data){
 									//console.log(JSON.parse(data));
 									
-									//console.log(data);
-									if(data.length == 0){
+									if(data.length == 2&& jjgrade!=1){
+										//console.log("数组为空");
 										return
 									}else{
 										data = JSON.parse(data);
@@ -242,7 +274,7 @@
 								success:function(data){
 									//console.log(JSON.parse(data));
 									
-									if(data.length == 0){
+									if(data.length == 2&& cjgrade!=1){
 										return
 									}else{
 										data = JSON.parse(data);
@@ -269,8 +301,8 @@
 								},
 								success:function(data){
 									//console.log(JSON.parse(data));
-									data = JSON.parse(data);
-									if(data.length == 0){
+									//data = JSON.parse(data);
+									if(data.length == 2 && fkgrade!=1){
 										return
 									}else{
 										data = JSON.parse(data);
@@ -295,7 +327,7 @@
 							maxdata = mapdata[i].value;
 						}
 					}
-					console.log(maxdata);
+					//console.log(maxdata);
 					var uploadedDataURL = "js/map_ganzhou.json";
 				    var name = 'map_ganzhou';
 				    var Chart = echarts.init(document.getElementById('gzqhmap_qy'));
@@ -399,13 +431,14 @@
 						var deptCode = nextcode[thisindex];
 						jjgrade++;
 						 // $("#jjdw_qy").html('');console.log(1)
-
+						 console.log("进入下一层");
 						getrightjjdata(jjgrade,deptCode,field,datestart,dateend);
 						//console.log(deptCode);
 
 					});	
 
 					//点击按钮返回接警首层
+					$("#jjdwreturn").unbind();//清除事件队列
 					$("#jjdwreturn").on("click",function(){
 						console.log("返回首层")
 						//返回首层
@@ -472,6 +505,7 @@
 					});	
 
 					//点击按钮返回出警首层
+					$("#cjdwreturn").unbind();
 					$("#cjdwreturn").on("click",function(){
 						console.log("返回首层")
 						//返回首层
@@ -538,6 +572,7 @@
 					});	
 
 					//点击返回首层
+					$("#fkdwreturn").unbind();
 					$("#fkdwreturn").on("click",function(){
 						console.log("返回首层")
 						//返回首层
@@ -550,12 +585,6 @@
 						$("#fkdwreturn").css("display","none");
 					})
 				}
-				
-
-				
-
-				
-
 			}
 			quyu_jq();
 		});

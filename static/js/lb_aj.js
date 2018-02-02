@@ -144,20 +144,20 @@
 			                      field: 'pause',
 			                      align: 'center',
 			                      valign: 'middle',
-			                      width:"64px",
+			                      width:'5%',//"64px",
 			                  }, 
 			                  {
 			                      title: '受案编号',
 			                      field: 'transactCaseCode',
 			                      align: 'center',
 			                      valign: 'middle',
-			                      width:"181px",
+			                      width:'10%',//"181px",
 			                  }, 
 			                  {
 			                      title: '行政刑事分类',
 			                      field: 'caseLabel',
 			                      align: 'center',
-			                      width:"89px",
+			                      width:'7%',//"89px",
 			                      formatter:function(value,row,index){
 			                      	return thisclassify(value);
 			                      }
@@ -170,31 +170,31 @@
 			                      title: '案件名称',
 			                      field: 'caseName',
 			                      align: 'center',
-			                      width:"140px",
+			                      width:'13%',//"140px",
 			                  },
 			                  {
 			                      title: '发案区域',
 			                      field: 'occurSection',
 			                      align: 'center',
-			                      width:"65px",
+			                      width:"5%",//"65px",
 
 			                  },
 			                   {
 			                      title: '发案地址',
 			                      field: 'reportCaseAddress',
 			                      align: 'center',
-			                      width:"100px",
+			                      width:"9%",//"100px",
 			                  },
 			                   {
 			                      title: '报案内容',
 			                      field: 'briefCaseInfo',
 			                      align: 'center',
-			                      width:"230px",
+			                      width:"30%",//"230px",
 			                  }, {
 			                      title: '发案时间上限',
 			                      field: 'caseStartDate',
 			                      align: 'center',
-			                      width:"90px",
+			                      width:"5%",//"90px",
 			                     
 			                      // formatter:function(value,row,index){
 			                      // 	return formatDateTime(value);
@@ -204,7 +204,7 @@
 			                      title: '发案时间下限',
 			                      field: 'caseEndDate',
 			                      align: 'center',
-			                      width:"90px",
+			                      width:'5%',//"90px",
 			                      //  formatter:function(value,row,index){
 			                      // 	return formatDateTime(value);
 			                      // },
@@ -213,7 +213,7 @@
 			                      title: '立案时间',
 			                      field: 'registerDate',
 			                      align: 'center',
-			                      width:"90px",
+			                      width:'5%',//"90px",
 			                      //  formatter:function(value,row,index){
 			                      // 	return formatDateTime(value);
 			                      // },
@@ -221,7 +221,7 @@
 			                      title: '破案日期',
 			                      field: 'solveCaseDate',
 			                      align: 'center',
-			                      width:"90px",
+			                      width:'5%',//"90px",
 			                      //  formatter:function(value,row,index){
 			                      // 	return formatDateTime(value);
 			                      // },
@@ -230,20 +230,20 @@
 			                      title: '办案单位',
 			                      field: 'handleOrgan',
 			                      align: 'center',
-			                      width:"150px",
+			                      width:"15%",//"150px",
 			                  },
 			                  {
 			                      title: '办案人',
 			                      field: 'handleName',
 			                      align: 'center',
-			                      width:"77px",
+			                      width:"7%",//"77px",
 			                  },
 			                  {
 			                      title: '操作',
 			                      field: 'id',
 			                      align: 'center',
 			                      events : position ,
-			                      width:"80px",
+			                      width:"7%",//"80px",
 			                      formatter:function(value,row,index){  
 			                  		var e = '<a id="caseDetail_a">详情</a> ';  
 			                   		var d = '<a id="casePosition_a">定位</a> ';
@@ -252,7 +252,15 @@
 			                        return e+d+f;  
 			                    } 
 			                  }
-			            ]
+			            ],
+			            //自定义提示语
+			            formatNoMatches: function(){
+							        return "没有相关的匹配结果";
+						},
+
+						formatLoadingMessage: function(){
+							        return "请稍等，正在加载中。。。";
+						},
 			});	
 		});
 
@@ -294,7 +302,7 @@
 			$(".showpagenum_aj").html(`
 				共${count}页
 			`);
-			console.log(value,count);
+			//console.log(value,count);
 			// console.log("#thiscount_aj").html();
 
 			function getlink(){

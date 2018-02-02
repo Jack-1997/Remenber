@@ -114,6 +114,7 @@
 					    singleSelect: false,
 					    //toolbar: '#thisposition',//绑定搜索按钮
 					    // data-locale:"zh-US" , //表格汉化
+					    //formatNoMatches:"你妹",
 					    search: false, //显示搜索框
 					    sidePagination: "server", //服务端处理分页
 					    responseHandler:function(res) {
@@ -122,6 +123,8 @@
 								显示到第${pageSize*(pageNO-1)+1}到第${pageNO*pageSize}条记录，共<span id="thiscount_jq">${res.pageCount}</span>条记录，每页显示${pageSize}条记录
 					    	`);
 					    	resolve(res.pageCount);
+					  //   	$(".no-records-found td").html("未找到匹配记录!");
+							// console.log($(".no-records-found td").html());
 					    	//console.log(res.pageCount,pageNO,pageSize);
 		                	return {
 		                    "total":res.pageCount,//总页数
@@ -137,11 +140,12 @@
 		                        formatter: function (value, row, index) {  
 		                            return index+1;  
 		                        }  
-		                    },
-			         //  		{ 
-					       //  	checkbox: true,
-					       //  	width:'36px',
-					      	// },
+		                    	},
+			           			//{ 
+					       		//  	checkbox: true,
+					       		//  	width:'36px',
+					      		// },
+
 			                  {
 			                    title: '一案一码',
 			                      field: 'ajbm',
@@ -232,9 +236,18 @@
 
 			                        return d;  
 			                    } 
-			                  }
+			                  },
+			                  
 			   
 			            ],
+			            //自定义提示语
+			            formatNoMatches: function(){
+							        return "没有相关的匹配结果";
+						},
+
+						formatLoadingMessage: function(){
+							        return "请稍等，正在加载中。。。";
+						},
 			           
 			});
 			
@@ -321,7 +334,9 @@
 		$("#jq_clear").click(function(){
 			$("#lb_jqam").val("");
 			$("#lb_jqbh").val("");
-		})
+		});
+
+
 		
 	});
 	

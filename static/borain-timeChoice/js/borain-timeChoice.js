@@ -143,7 +143,7 @@ function borainTimeChoiceShow(obj){
 }
 //时间选择器初始化
 function borainTimeChoiceEvent(start,end,level,less){
-    console.log(start,end,level,less);
+    //console.log(start,end,level,less);
     if(start==""||start==null||start=="init {}"){
         alert("请设置起始时间对象");
     }else {

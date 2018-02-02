@@ -1,4 +1,4 @@
-DateInput = (function($) {console.log(888)
+DateInput = (function($) {//console.log(888)
 	function DateInput(el, opts) {
 		if (typeof(opts) != "object") opts = {};
 		$.extend(this, DateInput.DEFAULT_OPTS, opts);

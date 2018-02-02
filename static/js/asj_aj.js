@@ -85,18 +85,18 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				        var templateaf = `<option value="">案发区域<option>` ;
 
 				        data.forEach(function(item,index){
-				        	//console.log(item.deptName);
-				        	// templatejj += `
-				        	// 	<option value="${item.deptCode}" data-id="${item.id}">${item.deptName}</option>
-				        	// `;
+				        	var thisstr = item.deptName;
+					        	if(item.deptName.length>16){
+					        		thisstr = item.deptName.slice(0,16) + "...";
+					        	}
 				        	templatecj += `
-				        		<option value="${item.deptId}" data-id="${item.id}">${item.deptName}</option>
+				        		<option title="${item.deptName}" value="${item.deptId}" data-id="${item.id}">${thisstr}</option>
 				        	`;
 				        	templatefk += `
-				        		<option value="${item.deptId}" data-id="${item.id}">${item.deptName}</option>
+				        		<option title="${item.deptName}" value="${item.deptId}" data-id="${item.id}">${thisstr}</option>
 				        	`;
 				        	templateaf += `
-				        		<option value="${item.deptCode}" data-id="${item.id}">${item.deptName}</option>
+				        		<option title="${item.deptName}" value="${item.deptCode}" data-id="${item.id}">${thisstr}</option>
 				        	`;
 				        });
 				        
@@ -233,6 +233,9 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				        data: ['上一期','本期', '同比增长','环比增长'],
 				        textStyle: {color: '#B4B4B4',fontSize: 12,},
 				        top:'7%',
+				        selected: {
+							    '环比增长': false
+						},
 				    },
 				    grid:{x:'5%',width:'90%',y:'15%'},
 				    xAxis: {
@@ -425,6 +428,9 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				        data: ['上一期','本期', '同比增长','环比增长'],
 				        textStyle: {color: '#B4B4B4',fontSize: 12,},
 				        top:'7%',
+				        selected: {
+							    '环比增长': false
+						},
 				    },
 				    grid:{x:'5%',width:'90%',y:'15%'},
 				    xAxis: {
@@ -519,6 +525,9 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				        data: ['上一期','本期', '同比增长','环比增长'],
 				        textStyle: {color: '#B4B4B4',fontSize: 12,},
 				        top:'7%',
+				        selected: {
+							    '环比增长': false
+						},
 				    },
 				    grid:{x:'10%',width:'80%',y:'15%'},
 				    xAxis: {
@@ -626,6 +635,9 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 						        data: ['本期','环比增长'],
 						        textStyle: {color: '#B4B4B4',fontSize: 12,},
 						        top:'7%',
+						  //       selected: {
+								//     '环比增长': false
+								// },
 						    },
 						    grid:{x:'10%',width:'80%',y:'15%'},
 						    xAxis: {
@@ -684,25 +696,37 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				    data:datasn,
 				    scriptCharset:'utf-8',
 				    success:function(data){
+
 				    	tenyearsdata = JSON.parse(data).reverse();
-				    	//console.log(tenyearsdata);
-				    	var thisyear = tenyearsdata[10].year;
-				    	
 				    	var thisData = new Array ;
 				    	var lastData = new Array ;
+				    	var thisyear;
+				    	if(tenyearsdata.length == 0){
+				    		thisData = [];
+				    		lastData = [];
+				    		thisyear = (datasn.date).slice(0,4);
+				    		sn_qs_fun2(thisData,lastData,thisyear);
+				    		return
+				    	}else{
 
-				    	for(var i=0; i<tenyearsdata.length-1; i++){
-							lastData.push(tenyearsdata[i].sum);
-						}
+					    	thisyear = tenyearsdata[10].year;
+					    	
+					    	
+
+					    	for(var i=0; i<tenyearsdata.length-1; i++){
+								lastData.push(tenyearsdata[i].sum);
+							}
 
 
-						for(var i=1; i<tenyearsdata.length; i++){
-							thisData.push(tenyearsdata[i].sum)
-						}
-						//console.log(thisData,lastData);
-				    	sn_qs_fun2(thisData,lastData,thisyear);
+							for(var i=1; i<tenyearsdata.length; i++){
+								thisData.push(tenyearsdata[i].sum)
+							}
+							
+					    	sn_qs_fun2(thisData,lastData,thisyear);
+				    	}
 				    	
-				    	//console.log(selectdate);	
+				    	
+				    	
 				    }
 				})
 
@@ -710,33 +734,33 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 				$.ajax({
 						type:'GET',
 						url:'api/caseTrend/getByHour',
-						
-					    // data:{
-					    // 	date:"20180101",
-					    // 	field:"FKSl"
-					    // },
 					    data:datahours,
 					    scriptCharset:'utf-8',
 					    success:function(data){
 					    	var data = JSON.parse(data)
-					    	// console.log(data)
-					    	// console.log(data[0]);
-					    	// console.log(data[1]);
+					    	
 					    	var thisData = new Array ;
 					    	var lastData = new Array ;
-					    	//console.log(data[0].result.length);
-					    	for(var i=0; i<data[0].result.length; i++){
-								thisData.push(data[0].result[i].sum);
-								//console.log(data[0].result[i].sum);
+					    	if(data.length == 0){
 
-							}
-							for(var i=0; i<data[1].result.length; i++){
-								lastData.push(data[1].result[i].sum);
-								//console.log(data[1].result[i].sum);
+					    		r_qs_fun2(thisData,lastData);
 
-							}
-							//console.log(thisData,lastData);
-							r_qs_fun2(thisData,lastData);
+					    		return
+					    	}else{
+						    	for(var i=0; i<data[0].result.length; i++){
+									thisData.push(data[0].result[i].sum);
+									//console.log(data[0].result[i].sum);
+
+								}
+								for(var i=0; i<data[1].result.length; i++){
+									lastData.push(data[1].result[i].sum);
+									//console.log(data[1].result[i].sum);
+
+								}
+								//console.log(thisData,lastData);
+								r_qs_fun2(thisData,lastData);
+					    		
+					    	}
 					    }
 				})
 
@@ -753,25 +777,29 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 					    scriptCharset:'utf-8',
 					    success:function(data){
 					    	var data = JSON.parse(data);
-					    	//console.log(data);
-					    	// console.log(data[0]);
-					    	// console.log(data[1]);
 					    	var thisData = new Array ;
 					    	var lastData = new Array ;
-					    	//console.log(data[0].result.length);
-					    	for(var i=0; i<data[0].result.length; i++){
-								thisData.push(data[0].result[i].sum);
-								//console.log(data[0].result[i].sum);
+					    	if(data.length == 0){
+					    		n_qs_fun2(thisData,lastData);
+					    		return 
+					    	}else{
+						    	//console.log(data[0].result.length);
+						    	for(var i=0; i<data[0].result.length; i++){
+									thisData.push(data[0].result[i].sum);
+									//console.log(data[0].result[i].sum);
 
-							}
-							for(var i=0; i<data[1].result.length; i++){
-								lastData.push(data[1].result[i].sum);
-								//console.log(data[1].result[i].sum);
+								}
+								for(var i=0; i<data[1].result.length; i++){
+									lastData.push(data[1].result[i].sum);
+									//console.log(data[1].result[i].sum);
 
-							}
-							//console.log(thisData,lastData);
-							// r_qs_fun(thisData,lastData);
-							n_qs_fun2(thisData,lastData);
+								}
+								//console.log(thisData,lastData);
+								// r_qs_fun(thisData,lastData);
+								n_qs_fun2(thisData,lastData);
+					    		
+					    	}
+					    	
 					    }
 				})
 
@@ -784,25 +812,29 @@ $("#asjqs_page2").load("html/qsfx/aj.html",function(){
 					    scriptCharset:'utf-8',
 					    success:function(data){
 					    	var data = JSON.parse(data);
-					    	//console.log(data);
-					    	//console.log(data[0]);
-					    	//console.log(data[1]);
 					    	var thisData = new Array ;
 					    	var lastData = new Array ;
-					    	//console.log(data[0].result.length);
-					    	for(var i=0; i<data[0].result.length; i++){
-								thisData.push(data[0].result[i].sum);
-								//console.log(data[0].result[i].sum);
+					    	if(data.length == 0){
+					    		y_qs_fun2(thisData,lastData);
+					    		return 
+					    	}else{
+						    	//console.log(data[0].result.length);
+						    	for(var i=0; i<data[0].result.length; i++){
+									thisData.push(data[0].result[i].sum);
+									//console.log(data[0].result[i].sum);
 
-							}
-							for(var i=0; i<data[1].result.length; i++){
-								lastData.push(data[1].result[i].sum);
-								//console.log(data[1].result[i].sum);
+								}
+								for(var i=0; i<data[1].result.length; i++){
+									lastData.push(data[1].result[i].sum);
+									//console.log(data[1].result[i].sum);
 
-							}
-							//console.log(thisData,lastData);
-							// r_qs_fun(thisData,lastData);
-							y_qs_fun2(thisData,lastData);
+								}
+								//console.log(thisData,lastData);
+								// r_qs_fun(thisData,lastData);
+								y_qs_fun2(thisData,lastData);
+					    		
+					    	}
+					    	
 					    }
 				})
 			}
